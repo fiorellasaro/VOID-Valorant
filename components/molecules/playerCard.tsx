@@ -7,10 +7,12 @@ interface PlayerCardProps {
   data: PlayerData;
   region: string;
 }
-
 const PlayerCard: React.FC<PlayerCardProps> = ({ data, region }) => {
+  const { gameName, tagLine } = data;
+  const href = `matches/${region}/${gameName}/${tagLine}`;
+
   return (
-    <Link href={`/matches/${region}/${data.gameName}/${data.tagLine}/`}>
+    <Link href={`${href}`} key={href}>
       <div style={{ marginBottom: 16, marginTop: 16 }}>
         <Card shadow="xs" padding="md">
           <div style={{ display: "flex", alignItems: "center" }}>

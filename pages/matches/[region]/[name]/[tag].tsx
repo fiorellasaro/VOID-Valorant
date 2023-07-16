@@ -25,7 +25,7 @@ const PlayerMatchesDetails = () => {
   return (
     <div>
       {/* Display recent matches of the player */}
-      <h1>
+      <h1 style={{ textAlign: "center" }}>
         Recent Matches of {name} {tag}{" "}
       </h1>
       <Container size="sm" style={{ margin: "auto" }}>
