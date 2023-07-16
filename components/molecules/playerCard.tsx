@@ -9,10 +9,12 @@ interface PlayerCardProps {
 }
 const PlayerCard: React.FC<PlayerCardProps> = ({ data, region }) => {
   const { gameName, tagLine } = data;
-  const href = `matches/${region}/${gameName}/${tagLine}`;
+  const href = `matches${region && `/${region}`}${gameName && `/${gameName}`}${
+    tagLine && `/${tagLine}`
+  }`;
 
   return (
-    <Link href={`${href}`} key={href}>
+    <Link href={`${href}`}>
       <div style={{ marginBottom: 16, marginTop: 16 }}>
         <Card shadow="xs" padding="md">
           <div style={{ display: "flex", alignItems: "center" }}>

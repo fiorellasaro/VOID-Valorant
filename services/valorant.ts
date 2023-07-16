@@ -5,8 +5,13 @@ import {
   matchesPaths,
 } from "../types/interfaces";
 
-export const api = createApi({
+export const valorantApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.henrikdev.xyz" }),
+  reducerPath: "valorantApi",
+  endpoints: () => ({}),
+});
+
+const valorantEndpoints = valorantApi.injectEndpoints({
   endpoints: (builder) => ({
     getLeaderboard: builder.query<LeaderboardData, leaderboardPaths>({
       query: ({ version, region }: leaderboardPaths) =>
@@ -19,4 +24,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetLeaderboardQuery, useGetMatchesQuery } = api;
+export const { useGetLeaderboardQuery, useGetMatchesQuery } = valorantEndpoints;

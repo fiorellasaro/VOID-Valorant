@@ -36,3 +36,16 @@ export interface LeaderboardData {
   radiant_threshold: number;
   total_players: number;
 }
+
+export interface postsPaths {
+  id: string;
+}
+
+export interface PostData {
+  authorAvatar: string;
+  authorName: string;
+  createdAt: string;
+  id: string;
+  postImage: string;
+  postText: string;
+}

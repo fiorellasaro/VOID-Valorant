@@ -19,33 +19,23 @@ const Home: NextPage = () => {
   });
 
   const handleScroll = () => {
-    // Calculate the distance between the bottom of the page and the current scroll position
     const distanceToBottom =
       document.documentElement.offsetHeight -
-      (window.innerHeight + window.pageYOffset);
+      (window.innerHeight + window.scrollY);
 
-    // Load more data when the user is near the bottom of the page and not currently loading more data
     if (distanceToBottom < 100 && !isLoadingMore) {
-      setPage((prevPage) => prevPage + 1);
+      loadMoreData();
     }
   };
-
   useEffect(() => {
-    // Attach the scroll event listener when the component mounts
     window.addEventListener("scroll", handleScroll);
-
-    // Remove the scroll event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isLoadingMore]);
-
-  useEffect(() => {
-    // Reset isLoadingMore when new data is fetched
-    setIsLoadingMore(false);
-  }, [data]);
+  }, []);
 
   const loadMoreData = () => {
+    setPage((prevPage) => prevPage + 1);
     setIsLoadingMore(true);
   };
 
@@ -57,9 +47,8 @@ const Home: NextPage = () => {
     return <div>Error occurred while fetching data</div>;
   }
 
-  // Calculate the start and end index for the current page
-  const startIndex = (page - 1) * ITEMS_PER_PAGE;
   const endIndex = page * ITEMS_PER_PAGE;
+  const loadedPlayers = data?.players.slice(0, endIndex);
 
   return (
     <div className={styles.container}>
@@ -70,10 +59,9 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Container size="sm" style={{ margin: "auto" }}>
-          {/* Render cards for the players in the current page */}
-          {data?.players.slice(startIndex, endIndex).map((playerData) => (
+          {loadedPlayers?.map((playerData, index) => (
             <PlayerCard
-              key={playerData.PlayerCardID}
+              key={`${"1839"}-${index}`}
               data={playerData}
               region={region}
             />

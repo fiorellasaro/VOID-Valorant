@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useGetMatchesQuery } from "@/services/valorant";
 import Spinner from "@/components/atoms/spinner";
@@ -9,9 +8,8 @@ const PlayerMatchesDetails = () => {
   const router = useRouter();
   const { region, name, tag } = router.query;
 
-  // Fetch recent matches of the player using the playerId
   const { data, isLoading, isError } = useGetMatchesQuery({
-    version: "v3", // Replace with the correct version
+    version: "v3",
     region: region as string,
     name: name as string,
     tag: tag as string,
@@ -21,10 +19,8 @@ const PlayerMatchesDetails = () => {
     return <Spinner />;
   }
 
-  console.log(data);
   return (
     <div>
-      {/* Display recent matches of the player */}
       <h1 style={{ textAlign: "center" }}>
         Recent Matches of {name} {tag}{" "}
       </h1>

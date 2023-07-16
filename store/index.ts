@@ -1,12 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { api } from "../services/valorant";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { valorantApi } from "../services/valorant";
+import { postApi } from "../services/posts";
+
+const rootReducer = combineReducers({
+  [valorantApi.reducerPath]: valorantApi.reducer,
+  [postApi.reducerPath]: postApi.reducer,
+});
 
 const store = configureStore({
-  reducer: {
-    [api.reducerPath]: api.reducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(valorantApi.middleware, postApi.middleware),
 });
 
 export default store;

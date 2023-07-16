@@ -9,7 +9,7 @@ export default class _Document extends Document {
   render() {
     return (
       <Html>
-        <Head title="VOID - Valorant" />
+        <Head title="VOID - Valorant - Posts" />
         <body>
           <Main />
           <NextScript />

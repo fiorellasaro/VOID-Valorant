@@ -1,14 +1,4 @@
-import {
-  Card,
-  Text,
-  Avatar,
-  Badge,
-  Grid,
-  Col,
-  Paper,
-  rem,
-  createStyles,
-} from "@mantine/core";
+import { Card, Text, Avatar, Badge, Grid, Col, Paper } from "@mantine/core";
 
 import {
   getAgent,
@@ -21,42 +11,13 @@ import {
 } from "@/utils";
 
 import { mantineTheme } from "@/styles/mantineTheme";
+import { useStyles } from "@/styles/styles";
 
 interface MatchCardProps {
   matchData: any;
   name: string | string[] | undefined;
   tag: string | string[] | undefined;
 }
-
-const useStyles = createStyles((theme) => ({
-  card: {
-    marginBottom: 16,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-  mainContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  paperSection: {
-    marginTop: 16,
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
-    width: "60%",
-  },
-  gridContent: {
-    marginBottom: 16,
-  },
-  infoSection: {
-    padding: "12px 16px",
-    width: "50%",
-  },
-}));
 
 const MatchCard: React.FC<MatchCardProps> = ({ matchData, name, tag }) => {
   const { classes } = useStyles();
@@ -71,22 +32,14 @@ const MatchCard: React.FC<MatchCardProps> = ({ matchData, name, tag }) => {
     <Card shadow="xs" padding="lg" className={classes.card}>
       <div className={classes.mainContainer}>
         <Grid gutter="md" className={classes.gridContent}>
-          <Col span={12} style={{ display: "flex", justifyContent: "center" }}>
+          <Col span={12} className={classes.KDAInfo}>
             <Badge size="xl" color="yellow">
               {KDA}
             </Badge>
           </Col>
         </Grid>
         <Grid gutter="md">
-          <Col
-            span={12}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+          <Col span={12} className={classes.agentInfo}>
             <Avatar size="xl" src={agentImage} alt="agent" radius="lg" />
             <Text
               size="xl"
